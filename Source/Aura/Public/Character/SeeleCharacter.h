@@ -14,4 +14,7 @@ class AURA_API ASeeleCharacter : public ASeeleCharacterBase
 {
 	GENERATED_BODY()
 	
+public:
+	ASeeleCharacter();
+
 };

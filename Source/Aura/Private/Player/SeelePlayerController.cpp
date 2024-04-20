@@ -15,7 +15,7 @@ void ASeelePlayerController::BeginPlay()
 	Super::BeginPlay(); 
 	check(SeeleContext);
 
-	
+
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
 	check(Subsystem);
 	Subsystem->AddMappingContext(SeeleContext, 0);
@@ -34,7 +34,7 @@ void ASeelePlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 
 	UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
-
+		
 	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ASeelePlayerController::Move);
 
 }
