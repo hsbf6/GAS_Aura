@@ -22,10 +22,7 @@ public:
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
 
-protected:
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Collision")
-	bool bBlockVisibility; 
-
+	
 	
 };
