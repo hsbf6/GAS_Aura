@@ -8,6 +8,7 @@
 #include "SeeleEnemy.generated.h"
 
 
+
 /**
  * 
  */
@@ -19,10 +20,13 @@ class AURA_API ASeeleEnemy : public ASeeleCharacterBase, public IEnemyInterface
 public:
 
 	ASeeleEnemy();
+	
+	/** Enemy Interface */
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
+	/** End Enemy Interface */
 
-
-	
+protected:
+	virtual void BeginPlay() override;
 	
 };

@@ -17,6 +17,11 @@ ASeeleCharacterBase::ASeeleCharacterBase()
 
 }
 
+UAbilitySystemComponent* ASeeleCharacterBase::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
+}
+
 // Called when the game starts or when spawned
 void ASeeleCharacterBase::BeginPlay()
 {

@@ -2,11 +2,27 @@
 
 
 #include "Character/SeeleEnemy.h"
+#include "AbilitySystem/SeeleAbilitySystemComponent.h"
+#include "AbilitySystem/SeeleAttributeSet.h"
 #include "Aura/Aura.h"
+
+class UAbilitySystemComponent;
 
 ASeeleEnemy::ASeeleEnemy()
 {
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
+	AbilitySystemComponent = CreateDefaultSubobject<USeeleAbilitySystemComponent>("AbilitySystemComponent");
+	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
+
+	AttributeSet = CreateDefaultSubobject<USeeleAttributeSet>("AttributeSet");
+	}
+
+void ASeeleEnemy::BeginPlay()
+{
+	Super::BeginPlay();
+	check(AbilitySystemComponent);
+	AbilitySystemComponent->InitAbilityActorInfo(this, this); 
 }
 
 void ASeeleEnemy::HighlightActor()
