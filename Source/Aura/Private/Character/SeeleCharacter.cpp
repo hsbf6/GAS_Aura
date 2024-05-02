@@ -29,6 +29,7 @@ void ASeeleCharacter::PossessedBy(AController* NewController)
 
 	// Init ability actor info for the server
 	InitAbilityActorInfo();
+
 }
 
 void ASeeleCharacter::OnRep_PlayerState()

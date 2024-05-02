@@ -16,8 +16,11 @@ class AURA_API ASeeleCharacter : public ASeeleCharacterBase
 	
 public:
 	ASeeleCharacter();
+
+	// Begin APawn Interface.
 	virtual void PossessedBy(AController* NewController) override;
 	virtual void OnRep_PlayerState() override;
+	// End APawn Interface.
 
 private:
 	void InitAbilityActorInfo(); 
