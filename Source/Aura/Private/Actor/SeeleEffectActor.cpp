@@ -27,6 +27,7 @@ void ASeeleEffectActor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	//TODO: Change this to apply a Gameplay Effect. For now using const_cast as a hack!
+	//Does this actually work? 
 	if (IAbilitySystemInterface* ASCInterface = Cast<IAbilitySystemInterface>(OtherActor))
 	{
 		const USeeleAttributeSet* SeeleAttributeSet = Cast<USeeleAttributeSet>(ASCInterface->GetAbilitySystemComponent()->GetAttributeSet(USeeleAttributeSet::StaticClass()));

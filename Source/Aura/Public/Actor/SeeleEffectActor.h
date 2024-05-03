@@ -8,7 +8,7 @@
 
 class USphereComponent; 
 
-
+//Does this actually work?
 UCLASS()
 class AURA_API ASeeleEffectActor : public AActor
 {
