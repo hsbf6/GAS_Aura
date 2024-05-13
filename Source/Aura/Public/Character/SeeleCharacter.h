@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Character/SeeleCharacterBase.h"
+// #include "Player/SeelePlayerController.h"
 #include "SeeleCharacter.generated.h"
 
 /**
@@ -22,6 +23,11 @@ public:
 	virtual void OnRep_PlayerState() override;
 	// End APawn Interface.
 
+	/*UPROPERTY()
+	TObjectPtr<ASeelePlayerController> SeelePlayerController; 
+	*/
+
 private:
+	//GAS Initializer. Unreal Engine native function found in \Source\GameplayAbilities\Private\AbilitySystemComponent_Abilities.cpp
 	void InitAbilityActorInfo(); 
 };

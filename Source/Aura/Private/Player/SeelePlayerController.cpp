@@ -90,8 +90,11 @@ void ASeelePlayerController::BeginPlay()
 
 
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
-	check(Subsystem);
-	Subsystem->AddMappingContext(SeeleContext, 0);
+	if (Subsystem)
+	{
+		Subsystem->AddMappingContext(SeeleContext, 0);
+	}
+	
 
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Default;

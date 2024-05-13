@@ -41,9 +41,13 @@ private:
 
 	void CursorTrace();
 
-	IEnemyInterface* LastActor;
-	IEnemyInterface* ThisActor;
-
+	TScriptInterface<IEnemyInterface>LastActor;
+	TScriptInterface<IEnemyInterface>ThisActor;
+	 /**
+	 *Used to be Raw Pointers. Now TScriptInterface pointers. Kind of like a TObject Pointer?
+	 *IEnemyInterface* 
+	 *IEnemyInterface* 
+	 */
 	
 
 
