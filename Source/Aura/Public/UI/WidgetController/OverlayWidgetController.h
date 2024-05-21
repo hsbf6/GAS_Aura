@@ -6,15 +6,16 @@
 #include "UI/WidgetController/SeeleWidgetController.h"
 #include "OverlayWidgetController.generated.h"
 
+// Found in DelegateCombinations.h; Arguments: (DelegateName, Param1, Param2) 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealthChangedSignature, float, NewHealth);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMaxHealthChangedSignature, float, MaxHealth);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMaxHealthChangedSignature, float, NewMaxHealth);
 
 
 
 /**
  * 
  */
-UCLASS()
+UCLASS(BlueprintType, Blueprintable)
 class AURA_API UOverlayWidgetController : public USeeleWidgetController
 {
 	GENERATED_BODY()
@@ -28,5 +29,7 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes")
 	FOnMaxHealthChangedSignature OnMaxHealthChanged;
+
+	
 
 };

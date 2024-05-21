@@ -3,6 +3,9 @@
 
 #include "UI/WidgetController/SeeleWidgetController.h"
 
+/* WidgetController base class.
+ * OverlayWidgetController derives from this
+ */
 
 void USeeleWidgetController::SetWidgetControllerParams(const FWidgetControllerParams& WCParams)
 {

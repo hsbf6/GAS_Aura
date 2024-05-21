@@ -9,9 +9,9 @@
 
 
 
-/**
- * 
- */
+/** Enemy class
+ *	Also derived from SeeleCharacterBase
+ */ 
 UCLASS()
 class AURA_API ASeeleEnemy : public ASeeleCharacterBase, public IEnemyInterface
 {
@@ -21,7 +21,9 @@ public:
 
 	ASeeleEnemy();
 	
-	/** Enemy Interface */
+	/** Enemy Interface
+	 *  Draw outline around enemy
+	 */
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
 	/** End Enemy Interface */

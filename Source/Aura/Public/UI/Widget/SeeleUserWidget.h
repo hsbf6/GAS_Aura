@@ -15,6 +15,7 @@ class AURA_API USeeleUserWidget : public UUserWidget
 	GENERATED_BODY()
 	
 public:
+	// This is called in SeeleHUD.cpp 
 	UFUNCTION(BlueprintCallable)
 	void SetWidgetController(UObject* InWidgetController);
 

@@ -25,20 +25,24 @@ void USeeleAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& O
 
 void USeeleAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealth) const
 {
+	// Multiplayer predicition client-side
 	GAMEPLAYATTRIBUTE_REPNOTIFY(USeeleAttributeSet, Health, OldHealth);
 }
 
 void USeeleAttributeSet::OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHealth) const
 {
+	// Multiplayer predicition client-side
 	GAMEPLAYATTRIBUTE_REPNOTIFY(USeeleAttributeSet, MaxHealth, OldMaxHealth);
 }
 
 void USeeleAttributeSet::OnRep_Mana(const FGameplayAttributeData& OldMana) const
 {
-	GAMEPLAYATTRIBUTE_REPNOTIFY(USeeleAttributeSet, Mana, OldMana);
+	// Multiplayer predicition client-side
+		GAMEPLAYATTRIBUTE_REPNOTIFY(USeeleAttributeSet, Mana, OldMana);
 }
 
 void USeeleAttributeSet::OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) const
 {
-	GAMEPLAYATTRIBUTE_REPNOTIFY(USeeleAttributeSet, MaxMana, OldMaxMana);
+	// Multiplayer predicition client-side
+		GAMEPLAYATTRIBUTE_REPNOTIFY(USeeleAttributeSet, MaxMana, OldMaxMana);
 }

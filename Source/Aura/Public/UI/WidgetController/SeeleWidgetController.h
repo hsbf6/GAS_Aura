@@ -7,20 +7,29 @@
 #include "UObject/NoExportTypes.h"
 #include "SeeleWidgetController.generated.h"
 
+
+// forward declare
 class UAttributeSet;
 class UAbilitySystemComponent;
 
+/* WidgetController base class.
+ * OverlayWidgetController derives from this
+ */
+
+
+// Create a USTRUCT. Created before the main body of the class
 
 USTRUCT(BlueprintType)
 struct FWidgetControllerParams	
 {
 	GENERATED_BODY()
+	// Name of our struct declared above
 
+	// empty constructor. Also no []. No idea why.
 	FWidgetControllerParams() {}
-	FWidgetControllerParams(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS)
-	: PlayerController(PC), PlayerState(PS), AbilitySystemComponent(ASC), AttributeSet(AS) {}
+	FWidgetControllerParams(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS) : PlayerController(PC), PlayerState(PS), AbilitySystemComponent(ASC), AttributeSet(AS) {}
 
-	
+	// Initialize a bunch of the arguments as nullptr. Apparently might throw compile error if not.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<APlayerController> PlayerController = nullptr;
 
@@ -65,4 +74,5 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")
 	TObjectPtr<UAttributeSet> AttributeSet;
 
+	
 };

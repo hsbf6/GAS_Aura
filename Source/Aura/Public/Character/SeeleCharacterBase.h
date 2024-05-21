@@ -7,7 +7,7 @@
 #include "GameFramework/Character.h"
 #include "SeeleCharacterBase.generated.h"
 
-
+//forward declare the ASC and AS
 class UAbilitySystemComponent;
 class UAttributeSet;
 
@@ -18,7 +18,9 @@ class AURA_API ASeeleCharacterBase : public ACharacter, public IAbilitySystemInt
 
 public:
 	// Sets default values for this character's properties
+	// This is the constructor.
 	ASeeleCharacterBase();
+
 
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }

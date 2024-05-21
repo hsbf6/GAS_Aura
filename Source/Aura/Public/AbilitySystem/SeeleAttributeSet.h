@@ -7,7 +7,7 @@
 #include "AbilitySystemComponent.h"
 #include "SeeleAttributeSet.generated.h"
 
-
+// This is from AttributeSet.h
 #define ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \
  	GAMEPLAYATTRIBUTE_PROPERTY_GETTER(ClassName, PropertyName) \
  	GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
@@ -26,7 +26,10 @@ class AURA_API USeeleAttributeSet : public UAttributeSet
 public:
 	USeeleAttributeSet();
 
+	// Returns the properties used for network replication, this needs to be overridden by all actor classes with native replicated properties
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+
+	// GAS attributeSet variables are of type FGameplayAttributeData
 
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Health, Category = "Vital Attributes")
 	//Create a variable of type FGameplayAttributeData and name Health

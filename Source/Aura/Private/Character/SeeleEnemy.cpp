@@ -6,22 +6,30 @@
 #include "AbilitySystem/SeeleAttributeSet.h"
 #include "Aura/Aura.h"
 
+//	forward declare
 class UAbilitySystemComponent;
 
-ASeeleEnemy::ASeeleEnemy()
+ASeeleEnemy::ASeeleEnemy() //constructor
 {
+	// This is so that post process red lines around enemy work
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
+	// Create the ASC on an enemy
 	AbilitySystemComponent = CreateDefaultSubobject<USeeleAbilitySystemComponent>("AbilitySystemComponent");
+	// Network
 	AbilitySystemComponent->SetIsReplicated(true);
 	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
 
+	//Create AS on an enemy
 	AttributeSet = CreateDefaultSubobject<USeeleAttributeSet>("AttributeSet");
 	}
 
 void ASeeleEnemy::BeginPlay()
 {
 	Super::BeginPlay();
+
+	// assert if ASC is valid, else crash
 	check(AbilitySystemComponent);
+	// For AI Pawns InitAbilityActorInfo is called right here in Begin Play
 	AbilitySystemComponent->InitAbilityActorInfo(this, this); 
 }
 

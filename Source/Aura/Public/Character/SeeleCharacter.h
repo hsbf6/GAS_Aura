@@ -7,8 +7,8 @@
 // #include "Player/SeelePlayerController.h"
 #include "SeeleCharacter.generated.h"
 
-/**
- * 
+/** This is the main player character class. It's derived from CharacterBase.
+ *  Initialize networked GAS implementation
  */
 UCLASS()
 class AURA_API ASeeleCharacter : public ASeeleCharacterBase
@@ -18,9 +18,13 @@ class AURA_API ASeeleCharacter : public ASeeleCharacterBase
 public:
 	ASeeleCharacter();
 
-	// Begin APawn Interface.
+	/* Begin APawn Interface.
+	 * InitAbilityActorInfo is called in this function
+	*/
 	virtual void PossessedBy(AController* NewController) override;
+	// Replication for networked game. InitAbilityActorInfo is also called in this function
 	virtual void OnRep_PlayerState() override;
+
 	// End APawn Interface.
 
 	/*UPROPERTY()

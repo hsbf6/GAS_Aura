@@ -7,9 +7,11 @@ public class Aura : ModuleRules
 	public Aura(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-	
+		
+		//Added EnhancedInput and GameplayAbilities modules
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "GameplayAbilities" });
 
+		//Added GameplayTags module
 		PrivateDependencyModuleNames.AddRange(new string[] { "GameplayTags", "GameplayTasks" });
 
 		// Uncomment if you are using Slate UI

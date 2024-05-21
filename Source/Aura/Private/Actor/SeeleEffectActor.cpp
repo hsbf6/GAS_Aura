@@ -14,11 +14,11 @@ ASeeleEffectActor::ASeeleEffectActor()
  	
 	PrimaryActorTick.bCanEverTick = false;
 
+	// Health pickup art mesh
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>("Mesh");
 	SetRootComponent(Mesh);
-
+	// Sphere collision for overlap event
 	Sphere = CreateDefaultSubobject<USphereComponent>("Sphere");
-
 	Sphere->SetupAttachment(GetRootComponent());
 
 }
@@ -49,6 +49,7 @@ void ASeeleEffectActor::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// Bind UObject instance and member function to dynamic multicast delegate
 	Sphere->OnComponentBeginOverlap.AddDynamic(this, &ASeeleEffectActor::OnOverlap);
 	Sphere->OnComponentEndOverlap.AddDynamic(this, &ASeeleEffectActor::EndOverlap);
 

@@ -8,14 +8,19 @@
 
 class USphereComponent; 
 
-//Does this actually work?
+/*	Effect actor; Couldn't quite remember what this was.
+ *	Base class to add some kind of effect to the ASC and AS
+ *	Currently implemented as a health pickup.
+ *	If picked up, adds 25 health and is then destroyed
+ *	
+ */
 UCLASS()
 class AURA_API ASeeleEffectActor : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
-	
+	// constructor
 	ASeeleEffectActor();
 
 	UFUNCTION()
