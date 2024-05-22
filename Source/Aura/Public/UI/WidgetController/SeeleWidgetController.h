@@ -58,7 +58,9 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	void SetWidgetControllerParams(const FWidgetControllerParams& WCParams);
-	virtual void BroadcastInitialValue(); 
+	virtual void BroadcastInitialValue();
+	// create function for callback when attribute values change (at the moment only on HealthChanged)
+	virtual void BindCallBacksToDependencies();
 
 protected:
 

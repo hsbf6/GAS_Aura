@@ -36,7 +36,6 @@ public:
 	FGameplayAttributeData Health;
 	ATTRIBUTE_ACCESSORS(USeeleAttributeSet, Health);
 
-
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MaxHealth, Category = "Vital Attributes")
 	//Create a variable of type FGameplayAttributeData and name MaxHealth
 	FGameplayAttributeData MaxHealth;

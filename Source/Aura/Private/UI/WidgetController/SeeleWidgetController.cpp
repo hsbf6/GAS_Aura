@@ -21,3 +21,8 @@ void USeeleWidgetController::BroadcastInitialValue()
 {
 
 }
+
+void USeeleWidgetController::BindCallBacksToDependencies()
+{
+
+}

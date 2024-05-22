@@ -8,12 +8,15 @@
 #include "UI/WidgetController/OverlayWidgetController.h"
 
 
+//    OverlayWidgetController is constructed here by the HUD
 UOverlayWidgetController* ASeeleHUD::GetOverlayWidgetController(const FWidgetControllerParams& WCParams)
 {
 	if (OverlayWidgetController == nullptr)
 	{
 		OverlayWidgetController = NewObject<UOverlayWidgetController>(this, OverlayWidgetControllerClass);
+		// Set Widget Controller parameters. We know that key variables are set now
 		OverlayWidgetController->SetWidgetControllerParams(WCParams);
+		OverlayWidgetController->BindCallBacksToDependencies();
 
 		return OverlayWidgetController;
 	}
@@ -32,8 +35,8 @@ void ASeeleHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySys
 
 	const FWidgetControllerParams WidgetControllerParams(PC, PS, ASC, AS);
 	/* create widget controller
-	* at this point the controller has a valid attribute set, because we are passing in
-	* WidgetControllerParams
+	*  at this point the controller has a valid attribute set, because we are passing in
+	*  WidgetControllerParams
 	*/
 	UOverlayWidgetController* WidgetController = GetOverlayWidgetController(WidgetControllerParams);
 
@@ -42,12 +45,12 @@ void ASeeleHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySys
 	*  widgetControllerSet Blueprint event will be called at this point
 	*/
 	OverlayWidget->SetWidgetController(WidgetController);
-	//Right after this we tell the widget controller to broadcast its initial values
+	// Right after this we tell the widget controller to broadcast its initial values
 	WidgetController->BroadcastInitialValue();
 
 	/* My futile attempt to call BroadcastInitialValue() 
-	UOverlayWidgetController* OverlayWidgetController = 
-	OverlayWidgetController = Cast<UOverlayWidgetController>()
+	   UOverlayWidgetController* OverlayWidgetController = 
+	   OverlayWidgetController = Cast<UOverlayWidgetController>()
 	*/
 
 	Widget->AddToViewport();

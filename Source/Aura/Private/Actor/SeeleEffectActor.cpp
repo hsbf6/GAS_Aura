@@ -33,7 +33,10 @@ void ASeeleEffectActor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 		const USeeleAttributeSet* SeeleAttributeSet = Cast<USeeleAttributeSet>(ASCInterface->GetAbilitySystemComponent()->GetAttributeSet(USeeleAttributeSet::StaticClass()));
 
 		USeeleAttributeSet* MutableSeeleAttributeSet = const_cast<USeeleAttributeSet*>(SeeleAttributeSet);
+		// add 25 to health hard coded 
 		MutableSeeleAttributeSet->SetHealth(SeeleAttributeSet->GetHealth() + 25.f);
+		// temp
+		MutableSeeleAttributeSet->SetMana(SeeleAttributeSet->GetMana() - 25.f);
 		Destroy();
 	}
 }
