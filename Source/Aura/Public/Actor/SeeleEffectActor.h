@@ -53,12 +53,16 @@ protected:
 	bool bDestroyOnEffectRemoval = false;
 
 
+
+
 	
 	UFUNCTION(BlueprintCallable)
 	void OnOverlap(AActor* TargetActor);
 	
 	UFUNCTION(BlueprintCallable)
 	void EndOverlap(AActor* TargetActor);
+
+
 
 
 
@@ -69,7 +73,9 @@ protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Applied Effects")
 	TEnumAsByte<EEffectApplicationPolicy> InstantEffectApplicationPolicy = EEffectApplicationPolicy::DoNotApply;
 
+
 	
+
 	
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Applied Effects")
@@ -77,6 +83,8 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Applied Effects")
 	TEnumAsByte<EEffectApplicationPolicy> DurationEffectApplicationPolicy = EEffectApplicationPolicy::DoNotApply;
+
+
 
 	
 	

@@ -4,6 +4,7 @@
 #include "Actor/SeeleEffectActor.h"
 
 #include "AbilitySystemComponent.h"
+#include "GameplayEffectTypes.h"
 #include "AbilitySystemInterface.h"
 #include "AbilitySystem/SeeleAttributeSet.h"
 #include "Components/SphereComponent.h"
@@ -31,6 +32,8 @@ void ASeeleEffectActor::BeginPlay()
 /* The whole following section is about applying effects
 *  
 */
+
+
 
 
 
@@ -81,7 +84,7 @@ void ASeeleEffectActor::OnOverlap(AActor* TargetActor)
 	{
 		ApplyEffectToTarget(TargetActor, DurationGameplayEffectClass);
 	}
-	if (InfiniteEffectRemovalPolicy==EEffectApplicationPolicy::ApplyOnOverlap)
+	if (InfiniteEffectRemovalPolicy == EEffectApplicationPolicy::ApplyOnOverlap)
 	{
 		ApplyEffectToTarget(TargetActor, InfiniteGameplayEffectClass);
 	}
@@ -108,7 +111,7 @@ void ASeeleEffectActor::EndOverlap(AActor* TargetActor)
 	{
 		ApplyEffectToTarget(TargetActor, InfiniteGameplayEffectClass);
 	}
-	if (InfiniteEffectRemovalPolicy==EEffectRemovalPolicy::RemoveOnEndOverlap)
+	if (InfiniteEffectRemovalPolicy == EEffectRemovalPolicy::RemoveOnEndOverlap)
 	{
 		UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor);
 		// If ASC is not valid, exit the function
