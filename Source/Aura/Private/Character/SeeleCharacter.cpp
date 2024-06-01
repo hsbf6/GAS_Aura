@@ -67,11 +67,6 @@ void ASeeleCharacter::InitAbilityActorInfo()
 
 
 
-	/* This might also work. Using a TObjectPtr to grab the class ASeelePlayerController, store it
-	 * in a variable called SeelePlayerController and reference it here. BUT TObjectPtr should not
-	 * be used in local variables, which SeelePlayerController is in this case.
-	 *
-	SeelePlayerController = Cast<ASeelePlayerController>(GetController());
-	*/
+	
 }
  

@@ -52,7 +52,7 @@ void ASeeleEffectActor::ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGa
 	FGameplayEffectContextHandle EffectContextHandle = TargetASC->MakeEffectContext();
 	//what object caused this GameplayEffect? AddSourceObject function sets this
 	EffectContextHandle.AddSourceObject(this);
-	const FGameplayEffectSpecHandle EffectSpecHandle = TargetASC->MakeOutgoingSpec(GameplayEffectClass, 1.0f, EffectContextHandle);
+	const FGameplayEffectSpecHandle EffectSpecHandle = TargetASC->MakeOutgoingSpec(GameplayEffectClass,ActorLevel, EffectContextHandle);
 	// Take the EffectsSpecHandle, take the Data, which is a TSharedPtr, call Get() to get the raw pointer and then lastly dereference with *, because input argument is a const reference, not a pointer.
 	const FActiveGameplayEffectHandle ActiveEffectHandle = TargetASC->ApplyGameplayEffectSpecToSelf(*EffectSpecHandle.Data.Get());
 

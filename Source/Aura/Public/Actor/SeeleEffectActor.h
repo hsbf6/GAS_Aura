@@ -104,5 +104,8 @@ protected:
 	// You only need to forward declare pointers or references. 
 	TMap<FActiveGameplayEffectHandle, UAbilitySystemComponent*> ActiveEffectHandles;
 	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Applied Effects")
+	float ActorLevel = 1.f;
+
 
 };

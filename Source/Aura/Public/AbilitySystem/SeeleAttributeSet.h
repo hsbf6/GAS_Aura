@@ -2,23 +2,29 @@
 
 #pragma once
 
+
+
 #include "CoreMinimal.h"
-#include "AttributeSet.h"
 #include "AbilitySystemComponent.h"
+#include "AttributeSet.h"
+#include "GameplayEffect.h"
+#include "GameplayEffectExtension.h"
 #include "GameplayEffectTypes.h"
 #include "UObject/ObjectMacros.h"
+
 #include "SeeleAttributeSet.generated.h"
+
 
 // This is from AttributeSet.h
 #define ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \
- 	GAMEPLAYATTRIBUTE_PROPERTY_GETTER(ClassName, PropertyName) \
- 	GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
- 	GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
- 	GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
+ 		GAMEPLAYATTRIBUTE_PROPERTY_GETTER(ClassName, PropertyName) \
+ 		GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
+ 		GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
+ 		GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
 
 
- 
+
 USTRUCT()
 struct FEffectProperties 
 {
@@ -41,17 +47,21 @@ struct FEffectProperties
 	UPROPERTY()
 	ACharacter* SourceCharacter = nullptr; 
 
+	UPROPERTY()
+	UAbilitySystemComponent* TargetASC = nullptr;
+	
+	UPROPERTY()
+	AActor* TargetAvatarActor = nullptr;
+	
+	UPROPERTY()
+	AController* TargetController = nullptr;
 
+	UPROPERTY()
+	ACharacter* TargetCharacter = nullptr; 
+
+	
 
 };
-
-
-
-
-
-
-
-
 
 
 
@@ -73,10 +83,16 @@ public:
 
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 
+	
 	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
 
 	
 	
+
+
+
+
+
 	// variables 
 	// GAS attributeSet variables are of type FGameplayAttributeData
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Health, Category = "Vital Attributes")
@@ -136,6 +152,9 @@ public:
 	// create custom function for on replicated for MaxMana
 	void OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) const;
 
-	
+private:
 
+	//UFUNCTION()
+	void SetEffectProperties(const struct FGameplayEffectModCallbackData& Data, FEffectProperties& Props) const;
+	
 };
