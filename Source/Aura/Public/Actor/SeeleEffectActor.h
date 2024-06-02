@@ -104,6 +104,8 @@ protected:
 	// You only need to forward declare pointers or references. 
 	TMap<FActiveGameplayEffectHandle, UAbilitySystemComponent*> ActiveEffectHandles;
 	
+
+	// Introduce a level to be set in the SeeleEffectActor BP. This will be multiplied with CurveTable value 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Applied Effects")
 	float ActorLevel = 1.f;
 

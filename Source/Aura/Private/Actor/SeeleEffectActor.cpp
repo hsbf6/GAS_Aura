@@ -5,9 +5,7 @@
 
 #include "AbilitySystemComponent.h"
 #include "GameplayEffectTypes.h"
-#include "AbilitySystemInterface.h"
-#include "AbilitySystem/SeeleAttributeSet.h"
-#include "Components/SphereComponent.h"
+
 #include "AbilitySystemBlueprintLibrary.h"
 //#include <AbilitySystemBlueprintLibrary.h>
 
