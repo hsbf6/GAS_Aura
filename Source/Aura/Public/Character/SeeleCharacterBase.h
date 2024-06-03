@@ -38,4 +38,9 @@ protected:
 
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet;
+
+	//GAS Initializer. Unreal Engine native function found in \Source\GameplayAbilities\Private\AbilitySystemComponent_Abilities.cpp
+	virtual void InitAbilityActorInfo();
+
+
 };

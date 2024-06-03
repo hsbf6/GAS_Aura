@@ -32,6 +32,9 @@ public:
 	*/
 
 private:
-	//GAS Initializer. Unreal Engine native function found in \Source\GameplayAbilities\Private\AbilitySystemComponent_Abilities.cpp
-	void InitAbilityActorInfo(); 
+	 
+	// GAS Initializer. Unreal Engine native function found in \Source\GameplayAbilities\Private\AbilitySystemComponent_Abilities.cpp
+	// Override because base function is now in base class
+	virtual void InitAbilityActorInfo() override;
+
 };

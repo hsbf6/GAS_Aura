@@ -8,6 +8,7 @@
 #include "Player/SeelePlayerController.h"
 #include "Player/SeelePlayerState.h"
 #include "UI/HUD/SeeleHUD.h"
+#include <AbilitySystem/SeeleAbilitySystemComponent.h>
 
 ASeeleCharacter::ASeeleCharacter() //constructor
 {
@@ -52,6 +53,8 @@ void ASeeleCharacter::InitAbilityActorInfo()
 	check(SeelePlayerState);
 	// Get the ASC and call function InitAbilityActorInfo. Determine who's owner and who's avatar.
 	SeelePlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(SeelePlayerState, this);
+
+	Cast<USeeleAbilitySystemComponent>(SeelePlayerState->GetAbilitySystemComponent())->AbilityActorInfoSet();
 	// ASC TObjectPtr declared but not defined in the base class (SeeleCharacterBase)
 	AbilitySystemComponent = SeelePlayerState->GetAbilitySystemComponent();
 	// AS TObjectPtr declared but not defined in the base class (SeeleCharacterBase)

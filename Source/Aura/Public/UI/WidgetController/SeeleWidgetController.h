@@ -62,6 +62,7 @@ public:
 	// create function for callback when attribute values change (at the moment only on HealthChanged)
 	virtual void BindCallBacksToDependencies();
 
+	
 protected:
 
 	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")

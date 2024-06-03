@@ -9,19 +9,12 @@ void UOverlayWidgetController::BroadcastInitialValue()
 {
 	// Super::BroadcastInitialValue();   No need to call Super, because it's just an empty function
 
-	//Creating delegates to broadcast the initial values to HUD
-	/*My attempt to grab the health variable from the attribute set was this:
-	 * float CurrentHealth = AbilitySystemComponent->GetNumericAttribute(USeeleAttributeSet::GetHealthAttribute());
-	 *
-	 */
+	// Creating delegates to broadcast the initial values to HUD
 	float CurrentHealth = AbilitySystemComponent->GetNumericAttribute(USeeleAttributeSet::GetHealthAttribute());
 	// Checking if SeeleAttributeSet is actually valid
 	const USeeleAttributeSet* SeeleAttributeSet = CastChecked<USeeleAttributeSet>(AttributeSet);
-	/* Broadcast values to the AS
-	* When doing quest challenge I forgot to call Broadcast here for Mana,
-	* therefore the Mana Globe parameters were not set (initial value 50, bottle adds 25.f)
-	* Because these lines set all the initial values
-	*/
+	// Broadcast values to the AS
+	 
 	OnHealthChanged.Broadcast(SeeleAttributeSet->GetHealth());
 	OnMaxHealthChanged.Broadcast(SeeleAttributeSet->GetMaxHealth());
 	OnManaChanged.Broadcast(SeeleAttributeSet->GetMana());
@@ -35,7 +28,7 @@ void UOverlayWidgetController::BindCallBacksToDependencies()
 	// Don't need Super, because the parent function is empty
 	// Super::BindCallBacksToDependencies();
 
-	// Get the AS call-back functions 
+	// Get the native ASC call-back functions 
 	const USeeleAttributeSet* SeeleAttributeSet = CastChecked<USeeleAttributeSet>(AttributeSet);
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
 		SeeleAttributeSet->GetHealthAttribute()).AddUObject(this, &UOverlayWidgetController::HealthChanged);

@@ -26,11 +26,26 @@ ASeeleEnemy::ASeeleEnemy() //constructor
 void ASeeleEnemy::BeginPlay()
 {
 	Super::BeginPlay();
+	InitAbilityActorInfo();
+	
+	 
+}
 
+void ASeeleEnemy::InitAbilityActorInfo()
+{
+/*
 	// assert if ASC is valid, else crash
 	check(AbilitySystemComponent);
+*/
+
 	// For AI Pawns InitAbilityActorInfo is called right here in Begin Play
-	AbilitySystemComponent->InitAbilityActorInfo(this, this); 
+	// Changed implementation to virtual function in base class
+	
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	Cast<USeeleAbilitySystemComponent>(AbilitySystemComponent)->AbilityActorInfoSet();
+		
+
+
 }
 
 void ASeeleEnemy::HighlightActor()

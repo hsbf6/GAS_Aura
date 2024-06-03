@@ -47,12 +47,6 @@ void ASeeleHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySys
 	OverlayWidget->SetWidgetController(WidgetController);
 	// Right after this we tell the widget controller to broadcast its initial values
 	WidgetController->BroadcastInitialValue();
-
-	/* My futile attempt to call BroadcastInitialValue() 
-	   UOverlayWidgetController* OverlayWidgetController = 
-	   OverlayWidgetController = Cast<UOverlayWidgetController>()
-	*/
-
 	Widget->AddToViewport();
 }
 

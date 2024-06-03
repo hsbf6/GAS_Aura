@@ -30,4 +30,8 @@ void ASeeleCharacterBase::BeginPlay()
 	
 }
 
+void ASeeleCharacterBase::InitAbilityActorInfo()
+{
+}
+
 
