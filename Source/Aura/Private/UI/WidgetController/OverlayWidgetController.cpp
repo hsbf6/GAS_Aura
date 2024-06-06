@@ -63,7 +63,7 @@ void UOverlayWidgetController::BindCallBacksToDependencies()
 	 * This doesn't require a callback function
 	 */
 	Cast<USeeleAbilitySystemComponent>(AbilitySystemComponent)->EffectAssetTags.AddLambda(
-	[] /* input parameter in () */ (const FGameplayTagContainer& AssetTags) 
+	[this] /* input parameter in () */ (const FGameplayTagContainer& AssetTags) 
 		{
 			for (const FGameplayTag& Tag : AssetTags /* Used to be called TagContainer while residing in SeeleASC */)
 			{
@@ -71,6 +71,7 @@ void UOverlayWidgetController::BindCallBacksToDependencies()
 				const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString());
 				GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue, Msg);
 
+				FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag);
 			}
 		}
 

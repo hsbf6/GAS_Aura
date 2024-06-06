@@ -6,13 +6,32 @@
 #include "UI/WidgetController/SeeleWidgetController.h"
 #include "OverlayWidgetController.generated.h"
 
+
+class USeeleUserWidget;
 // Found in DelegateCombinations.h; Arguments: (DelegateName, Param1, Param2) 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealthChangedSignature, float, NewHealth);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMaxHealthChangedSignature, float, NewMaxHealth);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnManaChangedSignature, float, NewMana);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMaxManaChangedSignature, float, NewMaxMana);
 
+USTRUCT(BlueprintType)
+struct FUIWidgetRow : public FTableRowBase // inherits from the base class for row structures for DataTables
+{
+	GENERATED_BODY()
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FGameplayTag MessageTag = FGameplayTag(); // Initialize to empty tag
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FText Message = FText(); // Display text to the user in the form of a widget
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<USeeleUserWidget> MessageWidget; // Add a widget so that we could display a little health icon of sorts when pickup
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UTexture2D* Image = nullptr; // Pointer to texture to show a picture
+
+};
 /**
  * 
  */
@@ -38,6 +57,8 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes")
 	FOnMaxManaChangedSignature OnMaxManaChanged;
 
+	
+
 protected:
 
 	void HealthChanged(const FOnAttributeChangeData& Data) const;
@@ -45,4 +66,28 @@ protected:
 	void ManaChanged(const FOnAttributeChangeData& Data) const;
 	void MaxManaChanged(const FOnAttributeChangeData& Data) const;
 
+	template<typename T>
+	T* GetDataTableRowByTag(UDataTable* DataTable, const FGameplayTag& Tag);
+
+	// This is exposed and can be set in Blueprints
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "WidgetData")
+	TObjectPtr<UDataTable> MessageWidgetDataTable;
+	
+
 };
+
+template<typename T>
+inline T* UOverlayWidgetController::GetDataTableRowByTag(UDataTable* DataTable, const FGameplayTag& Tag)
+{
+	/*
+	T* Row = DataTable->FindRow<T>(Tag.GetTagName(), TEXT(""));
+	if (Row)
+	{
+		return Row;
+	}
+	return nullptr;
+	* This whole shebang of code is the same as just this line
+	*/
+
+	return DataTable->FindRow<T>(Tag.GetTagName(), TEXT(""));
+}
