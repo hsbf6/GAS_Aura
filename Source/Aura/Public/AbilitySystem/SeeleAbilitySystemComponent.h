@@ -6,7 +6,7 @@
 #include "AbilitySystemComponent.h"
 #include "SeeleAbilitySystemComponent.generated.h"
 
-
+DECLARE_MULTICAST_DELEGATE_OneParam(FEffectAssetTags, const FGameplayTagContainer& /* AssetTags */);
 
 /**
  * 
@@ -21,6 +21,8 @@ class AURA_API USeeleAbilitySystemComponent : public UAbilitySystemComponent
 public:
 
 	void AbilityActorInfoSet();
+
+	FEffectAssetTags EffectAssetTags;
 
 protected:
 

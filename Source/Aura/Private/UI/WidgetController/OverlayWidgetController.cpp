@@ -30,6 +30,14 @@ void UOverlayWidgetController::BindCallBacksToDependencies()
 
 	// Get the native ASC call-back functions 
 	const USeeleAttributeSet* SeeleAttributeSet = CastChecked<USeeleAttributeSet>(AttributeSet);
+
+
+
+
+
+	/*Getting multicast delegate(NOT dynamic).Signature can be found if following function and checking type 
+	 *These are all delegate callback functions
+	 */
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
 		SeeleAttributeSet->GetHealthAttribute()).AddUObject(this, &UOverlayWidgetController::HealthChanged);
 
@@ -42,7 +50,40 @@ void UOverlayWidgetController::BindCallBacksToDependencies()
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
 		SeeleAttributeSet->GetMaxManaAttribute()).AddUObject(this, &UOverlayWidgetController::MaxManaChanged);
 	
+
+
+
+
+
+
+
+
+
+	/* Lambda - Anonymous function.When broadcast happens in SeeleASC this Lambda will be called
+	 * This doesn't require a callback function
+	 */
+	Cast<USeeleAbilitySystemComponent>(AbilitySystemComponent)->EffectAssetTags.AddLambda(
+	[] /* input parameter in () */ (const FGameplayTagContainer& AssetTags) 
+		{
+			for (const FGameplayTag& Tag : AssetTags /* Used to be called TagContainer while residing in SeeleASC */)
+			{
+				// Takes each Tag in AssetTags and adds OnScreenDebugMessage
+				const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString());
+				GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue, Msg);
+
+			}
+		}
+
+	);
 }
+
+
+
+
+
+
+
+
 
 void UOverlayWidgetController::HealthChanged(const FOnAttributeChangeData& Data) const
 {
