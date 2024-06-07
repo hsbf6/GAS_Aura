@@ -67,11 +67,34 @@ void UOverlayWidgetController::BindCallBacksToDependencies()
 		{
 			for (const FGameplayTag& Tag : AssetTags /* Used to be called TagContainer while residing in SeeleASC */)
 			{
-				// Takes each Tag in AssetTags and adds OnScreenDebugMessage
-				const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString());
-				GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue, Msg);
+				/* "A.1".MatchesTag("A") will return True, "A".MatchesTag("A.1") will return False
+				 * For example, say that tag = Message.HealthPotion
+				 * 
+				 *"Message.HealthPotion".MatchesTag("Message") will return True, "Message".MatchesTag("Message.HealthPotion") will return False
+				 */
+				
+				FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message"));
+				/* Tag = Message.HealthPotion.MatchesTag(MessageTag = "Message")
+				 * We are getting a Tab that has more hierarchical chains and we are checking if a word is somewhere in that hierarchy
+				 * conversely, if we did the inverse, "Message".MatchesTag("Message.HealthPotion"), clearly this would return false. 
+				 */
+				
+				if (Tag.MatchesTag(MessageTag))
+				{
+					/*
+					// Takes each Tag in AssetTags and adds OnScreenDebugMessage
+					
+					const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString());
+					GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue, Msg);
 
-				FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag);
+					*/
+
+					// Find dataTable row associated with any given tag
+					const FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag);
+
+					// broadcast. Since it's a pointer, we have to dereference it
+					MessageWidgetRowDelegate.Broadcast(*Row);
+				}
 			}
 		}
 
